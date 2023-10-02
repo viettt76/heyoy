@@ -1,0 +1,64 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root {
+    --font-family: 'Source Sans 3', sans-serif;
+    --scroller-grey: 219, 219, 219;
+    --text-color: #000;
+    --primary-color: #01b4e4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+}
+
+// Scroll bar
+.k-tooltip::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.k-tooltip::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--scroller-grey), 1);
+    border-radius: 20px;
+}
+.k-tooltip::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+    background: #fff;
+}
+
+// Tag
+button,
+input,
+[tabindex] {
+    font-family: var(--font-family);
+    outline: none;
+    border: none;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.tippy-arrow {
+    color: currentColor;
+}
