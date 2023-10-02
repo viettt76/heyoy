@@ -42,6 +42,7 @@ body::-webkit-scrollbar-track {
 }
 
 // Tag
+select,
 button,
 input,
 [tabindex] {
@@ -61,4 +62,8 @@ li {
 
 .tippy-arrow {
     color: currentColor;
+}
+
+.tippy-content {
+    width: 100%;
 }

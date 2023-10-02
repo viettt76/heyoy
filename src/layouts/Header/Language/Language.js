@@ -1,12 +1,27 @@
 import { useState, createContext } from 'react';
 import clsx from 'clsx';
 import Button from '~/components/Button';
-import Popper from '~/components/Popper';
+import Popper from './Popper';
 import styles from './Language.module.scss';
 
 export const LanguageContext = createContext();
 
-function Language() {
+const language = {
+    title: 'Language References',
+    data: [
+        {
+            title: 'Tiếng Việt',
+        },
+        {
+            title: 'Tiếng Anh',
+        },
+        {
+            title: 'Tiếng Trung',
+        },
+    ],
+};
+
+function AddMovie({ userCurrent }) {
     const [show, setShow] = useState(false);
 
     const handleClick = () => {
@@ -14,17 +29,16 @@ function Language() {
     };
 
     return (
-        // <LanguageContext.Provider value={[show, setShow]}>
+        <LanguageContext.Provider value={[show, setShow]}>
             <div>
-                {/* <Popper content={`hello ae`}>
-                    <Button text onClick={handleClick}>
+                <Popper addMessage language={language}>
+                    <Button outline onClick={handleClick}>
                         VI
                     </Button>
-                </Popper> */}
-                VI
+                </Popper>
             </div>
-        // </LanguageContext.Provider>
+        </LanguageContext.Provider>
     );
 }
 
-export default Language;
+export default AddMovie;

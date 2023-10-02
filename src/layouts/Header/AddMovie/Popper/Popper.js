@@ -3,7 +3,7 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import clsx from 'clsx';
 import styles from './Popper.module.scss';
-import { AddMovieContext } from '~/layouts/Header/AddMovie/AddMovie';
+import { AddMovieContext } from '../AddMovie';
 
 const Popper = ({ content, addMessage, placement = 'bottom', children }) => {
     const [show, setShow] = useContext(AddMovieContext);

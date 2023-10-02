@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '~/components/Button';
-import Popper from '~/components/Popper';
+import Popper from './Popper';
 import styles from './AddMovie.module.scss';
 
 export const AddMovieContext = createContext();

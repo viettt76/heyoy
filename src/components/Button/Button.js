@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './Button.module.scss'
 import { forwardRef } from 'react';
 
-const Button = forwardRef(({ to, href, logo, text, menu ,children, onClick }, ref) => {
+const Button = forwardRef(({ to, href, logo, text, menu, outline ,children, onClick }, ref) => {
     let Type = 'a';
     if (to) {
         Type = Link;
@@ -13,6 +13,7 @@ const Button = forwardRef(({ to, href, logo, text, menu ,children, onClick }, re
         [styles.text]: text,
         [styles.menu]: menu,
         [styles.logo]: logo,
+        [styles.outline]: outline,
     })
 
     return (
