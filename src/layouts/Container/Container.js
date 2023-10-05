@@ -1,7 +1,11 @@
+import Row from '~/components/Row/Row';
+
 function Container() {
-    return ( 
-        <h1>Container</h1>
-     );
+    return (
+        <div>
+            <Row />
+        </div>
+    );
 }
 
 export default Container;
