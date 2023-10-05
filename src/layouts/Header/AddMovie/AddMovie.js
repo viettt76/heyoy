@@ -8,6 +8,8 @@ import styles from './AddMovie.module.scss';
 
 export const AddMovieContext = createContext();
 
+const addMenu = ['Add New Movie', 'Add New TV Show'];
+
 function AddMovie({ userCurrent }) {
     const [show, setShow] = useState(false);
 
@@ -18,10 +20,16 @@ function AddMovie({ userCurrent }) {
     return (
         <AddMovieContext.Provider value={[show, setShow]}>
             {userCurrent ? (
-                <h1>Nếu có đăng nhập</h1>
+                <div>
+                    <Popper options data={addMenu}>
+                        <Button text>
+                            <FontAwesomeIcon className={clsx(styles.addIcon)} icon={faPlus} onClick={handleClick} />
+                        </Button>
+                    </Popper>
+                </div>
             ) : (
                 <div>
-                    <Popper addMessage content={`Can't find a movie or TV show? Login to create it.`}>
+                    <Popper addMessage data={[`Can't find a movie or TV show? Login to create it.`]}>
                         <Button text>
                             <FontAwesomeIcon className={clsx(styles.addIcon)} icon={faPlus} onClick={handleClick} />
                         </Button>

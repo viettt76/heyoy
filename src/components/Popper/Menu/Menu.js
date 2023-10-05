@@ -6,6 +6,7 @@ import styles from './Menu.module.scss';
 const Menu = ({ placement = 'bottom', children, data = [] }) => {
     return (
         <Tippy
+            zIndex='999999'
             interactive
             placement={placement}
             render={(attrs) => (

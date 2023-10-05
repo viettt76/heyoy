@@ -1,3 +1,7 @@
+.btn {
+    cursor: pointer;
+}
+
 .logo {
     width: 40px;
     height: 40px;
@@ -14,10 +18,10 @@
     height: 30px;
     padding-left: 24px;
     min-width: 170px;
-    background-color: #fff;
 
     &:hover {
-    background-color: #f8f9fa;
+        color: #fff;
+        background-color: #032541;
     }
 }
 
@@ -30,10 +34,21 @@
     padding: 3px 8px;
     margin-left: 15px;
     margin-right: 15px;
-    cursor: pointer;
 
     &:hover {
         color: #000;
         background-color: #fff;
     }
+}
+
+.closeSearch {
+    display: flex;
+    font-size: 2.8rem;
+    color: #fff;
+    padding: 4px;
+    margin-left: 12px;
+}
+
+.avatar {
+    display: flex;
 }

@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import clsx from 'clsx';
-import styles from './Popper.module.scss';
-import { LanguageContext } from '../Language';
+import styles from './Language.module.scss';
+import { LanguageContext } from './Language';
 
 const Popper = ({ language, addOption, placement = 'bottom', children }) => {
     const [show, setShow] = useContext(LanguageContext);
@@ -12,7 +12,7 @@ const Popper = ({ language, addOption, placement = 'bottom', children }) => {
         setShow(false);
     };
 
-    const classes = clsx(styles.wrapper, {
+    const classes = clsx(styles.popper, {
         [styles.addOption]: addOption,
     });
 

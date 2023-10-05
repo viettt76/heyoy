@@ -1,13 +1,12 @@
 import clsx from 'clsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-
 import styles from './Header.module.scss';
 import logo from '~/assets/logo.png';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import AddMovie from './AddMovie';
 import Language from './Language';
+import Search from './Search';
+import UserAction from './UserAction';
 
 const menuLeft = [
     {
@@ -84,23 +83,8 @@ const menuLeft = [
     },
 ];
 
-const menuRight = [
-    {
-        title: `Can't find a movie or TV show?
-            Login to create it.`,
-        data: [
-            {
-                title: `Can't find a movie or TV show?
-                    Login to create it.
-                `,
-                to: '/movie',
-            },
-        ],
-    },
-];
-
 function Header() {
-    const userCurrent = false;
+    const userCurrent = true;
 
     return (
         <div className={clsx(styles.wrapper)}>
@@ -120,22 +104,15 @@ function Header() {
                     })}
                 </ul>
             </div>
+
             <div className={clsx(styles.headerLeft)}>
                 <AddMovie userCurrent={userCurrent} />
 
                 <Language />
-                
-                <div className={clsx(styles.auth)}>
-                    <Button text to={'/login'}>
-                        Đăng nhập
-                    </Button>
-                </div>
-                <div className={clsx(styles.auth)}>
-                    <Button text to={'/register'}>
-                        Đăng ký
-                    </Button>
-                </div>
-                <FontAwesomeIcon className={clsx(styles.searchIcon)} icon={faMagnifyingGlass} />
+
+                <UserAction userCurrent={userCurrent} />
+
+                <Search />
             </div>
         </div>
     );

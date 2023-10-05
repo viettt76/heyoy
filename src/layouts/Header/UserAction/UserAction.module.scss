@@ -1,0 +1,25 @@
+.authAction {
+    display: flex;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 4px;
+
+    .avatarPopper {
+        top: -8px;
+        background-color: #fff;
+    }
+}
+
+.notify {
+    font-size: 1.8rem;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
