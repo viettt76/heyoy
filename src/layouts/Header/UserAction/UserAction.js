@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faBell, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faUser } from '@fortawesome/free-regular-svg-icons';
@@ -65,7 +66,7 @@ function UserAction({ userCurrent }) {
                             </MultiMenu>
                         ) : (
                             <Popper className={clsx(styles.avatarPopper)} content="Hồ sơ và cài đặt">
-                                <Button text avatar onClick={() => setShowUserPoplist(true)}>
+                                <Button>
                                     <img className={styles.avatar} src={avatar} alt="Đào Lê Phương Hoa" />
                                 </Button>
                             </Popper>
@@ -88,6 +89,10 @@ function UserAction({ userCurrent }) {
             )}
         </div>
     );
+}
+
+UserAction.propTypes = {
+    userCurrent: PropTypes.bool.isRequired,
 }
 
 export default UserAction;

@@ -1,9 +1,10 @@
 import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './Button.module.scss';
 
-const Button = forwardRef(({ to, href, logo, text, menu, closeSearch, outline, avatar, children, onClick }, ref) => {
+const Button = forwardRef(({ to, href, text, menu, closeSearch, outline, avatar, children, onClick }, ref) => {
     let Type = 'a';
     if (to) {
         Type = Link;
@@ -12,10 +13,7 @@ const Button = forwardRef(({ to, href, logo, text, menu, closeSearch, outline, a
     const classes = clsx(styles.btn, {
         [styles.text]: text,
         [styles.menu]: menu,
-        [styles.logo]: logo,
         [styles.outline]: outline,
-        [styles.closeSearch]: closeSearch,
-        [styles.avatar]: avatar
     });
 
     return (
@@ -24,5 +22,15 @@ const Button = forwardRef(({ to, href, logo, text, menu, closeSearch, outline, a
         </Type>
     );
 });
+
+Button.propTypes = {
+    to: PropTypes.string,
+    href: PropTypes.string,
+    text: PropTypes.bool,
+    menu: PropTypes.bool,
+    outline: PropTypes.bool,
+    children: PropTypes.node.isRequired,
+    onClick: PropTypes.func,
+}
 
 export default Button;

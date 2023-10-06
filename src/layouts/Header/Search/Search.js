@@ -1,4 +1,5 @@
 import { forwardRef, useState, createContext, useContext, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -28,7 +29,7 @@ const SearchIcon = forwardRef(({ onClick }, ref) => {
 
 const SearchContext = createContext();
 
-function Search({ children }) {
+function Search() {
     const inputRef = useRef();
     const [showWrapperSearch, setShowWrapperSearch] = useState(false);
     const [searchValue, setSearchValue] = useState('');
@@ -93,18 +94,21 @@ function Search({ children }) {
                         onClickOutside={() => setShowWrapperSearch(false)}
                     >
                         <Button
-                            closeSearch
                             onClick={() => {
                                 setShowWrapperSearch(!showWrapperSearch);
                             }}
                         >
-                            <FontAwesomeIcon icon={faXmark} />
+                            <FontAwesomeIcon className={clsx(styles.closeSearch)} icon={faXmark} />
                         </Button>
                     </Tippy>
                 </div>
             )}
         </SearchContext.Provider>
     );
+}
+
+SearchIcon.propTypes = {
+    onClick: PropTypes.func,
 }
 
 export default Search;

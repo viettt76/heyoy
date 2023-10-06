@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Header.module.scss';
 import logo from '~/assets/logo.png';
@@ -89,9 +90,9 @@ function Header() {
     return (
         <div className={clsx(styles.wrapper)}>
             <div className={clsx(styles.headerRight)}>
-                <Button logo to={'/'}>
+                <Link to={'/'}>
                     <img className={clsx(styles.logo)} src={logo} alt="Heyoy" />
-                </Button>
+                </Link>
                 <ul className={clsx(styles.nav)}>
                     {menuLeft.map((item, index) => {
                         return (

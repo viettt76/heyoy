@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import clsx from 'clsx';
@@ -11,6 +12,12 @@ function Popper({ className, content, children }) {
             {children}
         </Tippy>
     );
+}
+
+Popper.propTypes = {
+    className: PropTypes.string,
+    content: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired 
 }
 
 export default Popper;

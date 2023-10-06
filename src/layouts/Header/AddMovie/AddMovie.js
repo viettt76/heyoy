@@ -1,4 +1,5 @@
 import { useState, createContext } from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -39,5 +40,9 @@ function AddMovie({ userCurrent }) {
         </AddMovieContext.Provider>
     );
 }
+
+AddMovie.propTypes = {
+    userCurrent: PropTypes.bool.isRequired,
+};
 
 export default AddMovie;

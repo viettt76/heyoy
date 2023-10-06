@@ -2,11 +2,6 @@
     cursor: pointer;
 }
 
-.logo {
-    width: 40px;
-    height: 40px;
-}
-
 .text {
     color: #fff;
     padding: 10px 14px;
@@ -39,16 +34,4 @@
         color: #000;
         background-color: #fff;
     }
-}
-
-.closeSearch {
-    display: flex;
-    font-size: 2.8rem;
-    color: #fff;
-    padding: 4px;
-    margin-left: 12px;
-}
-
-.avatar {
-    display: flex;
 }

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './SearchResult.module.scss';
 import { SearchIcon } from '~/components/Icons';
@@ -15,6 +16,10 @@ function SearchResult({ data }) {
             })}
         </ul>
     );
+}
+
+SearchResult.propTypes = {
+    data: PropTypes.array.isRequired
 }
 
 export default SearchResult;

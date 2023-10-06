@@ -2,7 +2,6 @@ import { useState, createContext } from 'react';
 import clsx from 'clsx';
 import Button from '~/components/Button';
 import Popper from './Popper';
-import styles from './Language.module.scss';
 
 export const LanguageContext = createContext();
 
@@ -21,7 +20,7 @@ const language = {
     ],
 };
 
-function AddMovie({ userCurrent }) {
+function Language() {
     const [show, setShow] = useState(false);
 
     const handleClick = () => {
@@ -41,4 +40,4 @@ function AddMovie({ userCurrent }) {
     );
 }
 
-export default AddMovie;
+export default Language;

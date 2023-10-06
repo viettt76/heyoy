@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +9,7 @@ import clsx from 'clsx';
 import styles from './MultiMenu.module.scss';
 import MenuItem from './MenuItem';
 
-const MultiMenu = ({ placement = 'bottom', children, data = [] }) => {
+const MultiMenu = ({ placement = 'bottom', children, data }) => {
     const [history, setHistory] = useState([{ data: data }]);
     const currentMenu = history[history.length - 1];
 
@@ -61,5 +62,11 @@ const MultiMenu = ({ placement = 'bottom', children, data = [] }) => {
         </Tippy>
     );
 };
+
+MultiMenu.propTypes = {
+    placement: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    data: PropTypes.array.isRequired,
+}
 
 export default MultiMenu;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import clsx from 'clsx';
@@ -94,6 +95,11 @@ function Row({ title, genres = 'Top Rated' }) {
             <Carousel interval={null}>{slides}</Carousel>
         </div>
     );
+}
+
+Row.propTypes = {
+    title: PropTypes.string.isRequired,
+    genres: PropTypes.string,
 }
 
 export default Row;

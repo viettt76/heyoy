@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './MultiMenu.module.scss'
 import Button from '~/components/Button';
@@ -15,6 +16,11 @@ function MenuItem({ item, onClick }) {
         </Button>
         </div>
     );
+}
+
+MenuItem.propTypes = {
+    item: PropTypes.object.isRequired,
+    onClick: PropTypes.func
 }
 
 export default MenuItem;

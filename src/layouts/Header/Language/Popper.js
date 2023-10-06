@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import clsx from 'clsx';
@@ -40,5 +41,12 @@ const Popper = ({ language, addOption, placement = 'bottom', children }) => {
         </Tippy>
     );
 };
+
+Popper.propTypes = {
+    language: PropTypes.object.isRequired,
+    addOption: PropTypes.bool,
+    placement: PropTypes.string,
+    children: PropTypes.node.isRequired,
+}
 
 export default Popper;
