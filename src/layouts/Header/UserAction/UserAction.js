@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faBell, faGear } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ import styles from './UserAction.module.scss';
 import MultiMenu from '~/components/MultiMenu';
 import Button from '~/components/Button';
 import avatar from '~/assets/images/avatar.jpeg';
-import Popper from '~/components/Popper/Popper';
+import Popper from '~/components/Popper';
 
 const userPopList = [
     {
@@ -42,57 +42,61 @@ const userPopList = [
         title: 'Đăng xuất',
         icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
         separate: true,
-    }
+    },
 ];
 
+export const UserActionContext = createContext();
+
 function UserAction({ userCurrent }) {
-    const [showUserPoplist, setShowUserPoplist] = useState(true);
+    const [showUserPopList, setShowUserPopList] = useState(false);
 
     return (
-        <div>
-            {userCurrent ? (
-                <div className={clsx(styles.authAction)}>
-                    <div className={clsx(styles.auth)}>
-                        <Button text>
-                            <FontAwesomeIcon className={clsx(styles.notify)} icon={faBell} />
-                        </Button>
+        <UserActionContext.Provider value={[showUserPopList, setShowUserPopList]}>
+            <div>
+                {userCurrent ? (
+                    <div className={clsx(styles.authAction)}>
+                        <div className={clsx(styles.auth)}>
+                            <Button text>
+                                <FontAwesomeIcon className={clsx(styles.notify)} icon={faBell} />
+                            </Button>
+                        </div>
+                        <div className={clsx(styles.auth)}>
+                            {showUserPopList ? (
+                                <MultiMenu data={userPopList}>
+                                    <Button>
+                                        <img className={styles.avatar} src={avatar} alt="Đào Lê Phương Hoa" />
+                                    </Button>
+                                </MultiMenu>
+                            ) : (
+                                <Popper className={clsx(styles.avatarPopper)} content="Hồ sơ và cài đặt">
+                                    <Button onClick={() => setShowUserPopList(true)}>
+                                        <img className={styles.avatar} src={avatar} alt="Đào Lê Phương Hoa" />
+                                    </Button>
+                                </Popper>
+                            )}
+                        </div>
                     </div>
-                    <div className={clsx(styles.auth)}>
-                        {showUserPoplist ? (
-                            <MultiMenu data={userPopList}>
-                                <Button text avatar>
-                                    <img className={styles.avatar} src={avatar} alt="Đào Lê Phương Hoa" />
-                                </Button>
-                            </MultiMenu>
-                        ) : (
-                            <Popper className={clsx(styles.avatarPopper)} content="Hồ sơ và cài đặt">
-                                <Button>
-                                    <img className={styles.avatar} src={avatar} alt="Đào Lê Phương Hoa" />
-                                </Button>
-                            </Popper>
-                        )}
+                ) : (
+                    <div className={clsx(styles.authAction)}>
+                        <div className={clsx(styles.auth)}>
+                            <Button text to={'/login'}>
+                                Đăng nhập
+                            </Button>
+                        </div>
+                        <div className={clsx(styles.auth)}>
+                            <Button text to={'/register'}>
+                                Đăng ký
+                            </Button>
+                        </div>
                     </div>
-                </div>
-            ) : (
-                <div className={clsx(styles.authAction)}>
-                    <div className={clsx(styles.auth)}>
-                        <Button text to={'/login'}>
-                            Đăng nhập
-                        </Button>
-                    </div>
-                    <div className={clsx(styles.auth)}>
-                        <Button text to={'/register'}>
-                            Đăng ký
-                        </Button>
-                    </div>
-                </div>
-            )}
-        </div>
+                )}
+            </div>
+        </UserActionContext.Provider>
     );
 }
 
 UserAction.propTypes = {
     userCurrent: PropTypes.bool.isRequired,
-}
+};
 
 export default UserAction;

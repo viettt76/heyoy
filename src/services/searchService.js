@@ -1,27 +1,29 @@
-import request from '~/utils/httpRequest';
-import apis from '~/utils/apis';
+import axios from '~/utils/customizeAxios';
+import requests from '~/utils/requests';
 
-const search = async ({ debounceValue }) => {
-
-    if (debounceValue) {
-        const res = await request.get(apis.fetchSearch, {
+const search = async (query, page = '1') => {
+    if (query) {
+        const res = await axios.get(requests.fetchSearch, {
             params: {
-                query: debounceValue,
+                query,
+                page,
             },
         });
-
-        if(res && res.data && res.data.results.length > 0) {
-            const result = res.data.results.slice(0, 10);
-            return result;
+        if (res && res.results?.length > 0) {
+            return res;
         }
 
         return;
     } else {
-        const res = await request.get(apis.fetchTrending, {});
+        const res = await axios.get(requests.fetchTrending, {
+            params: {
+                query: '',
+                page,
+            },
+        });
 
-        if(res && res.data && res.data.results.length > 0) {
-            const result = res.data.results.slice(0, 10);
-            return result;
+        if (res && res.results?.length > 0) {
+            return res;
         }
     }
 };

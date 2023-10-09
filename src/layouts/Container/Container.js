@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import styles from './Container.module.scss'
+import styles from './Container.module.scss';
 import Row from '~/components/Row/Row';
 
 function Container() {

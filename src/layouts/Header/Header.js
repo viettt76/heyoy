@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Header.module.scss';
-import logo from '~/assets/logo.png';
+import logo from '~/assets/images/logo.png';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import AddMovie from './AddMovie';
@@ -86,7 +86,6 @@ const menuLeft = [
 
 function Header() {
     const userCurrent = true;
-
     return (
         <div className={clsx(styles.wrapper)}>
             <div className={clsx(styles.headerRight)}>

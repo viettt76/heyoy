@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
-
 import styles from './MultiMenu.module.scss';
 import MenuItem from './MenuItem';
+import { UserActionContext } from '~/layouts/Header/UserAction/UserAction';
 
-const MultiMenu = ({ placement = 'bottom', children, data }) => {
+function MultiMenu({ placement = 'bottom', children, data }) {
+    const [show, setShow] = useContext(UserActionContext);
+
     const [history, setHistory] = useState([{ data: data }]);
     const currentMenu = history[history.length - 1];
 
@@ -24,7 +26,7 @@ const MultiMenu = ({ placement = 'bottom', children, data }) => {
                 <></>
             )}
             {currentMenu.data.map((item, index) => {
-                const isParent = !!item.children
+                const isParent = !!item.children;
                 return (
                     <MenuItem
                         key={index}
@@ -50,6 +52,7 @@ const MultiMenu = ({ placement = 'bottom', children, data }) => {
 
     return (
         <Tippy
+            visible={show}
             delay={[200, 500]}
             zIndex="999999"
             interactive
@@ -57,16 +60,17 @@ const MultiMenu = ({ placement = 'bottom', children, data }) => {
             hideOnClick={false}
             render={renderMenu}
             onHide={handleResetMenu}
+            onClickOutside={() => setShow(false)}
         >
             {children}
         </Tippy>
     );
-};
+}
 
 MultiMenu.propTypes = {
     placement: PropTypes.string,
     children: PropTypes.node.isRequired,
     data: PropTypes.array.isRequired,
-}
+};
 
 export default MultiMenu;

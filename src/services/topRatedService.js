@@ -1,11 +1,11 @@
-import request from '~/utils/httpRequest';
-import apis from '~/utils/apis';
+import axios from '~/utils/customizeAxios';
+import requests from '~/utils/requests';
 
 const topRated = async () => {
     try {
-        const res = await request.get(apis.fetchTopRated);
-        if (res && res.data && res.data.results.length > 0) {
-            const results = res.data.results;
+        const res = await axios.get(requests.fetchTopRated);
+        if (res && res.results.length > 0) {
+            const results = res.results;
             return results;
         }
 

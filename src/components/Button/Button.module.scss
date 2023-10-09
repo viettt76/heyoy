@@ -35,3 +35,29 @@
         background-color: #fff;
     }
 }
+
+.control {
+    height: 42px;
+    width: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: #fff;
+    padding: 4px 4px;
+
+    &:hover {
+        border-color: #fff;
+    }
+}
+
+.control + .control {
+    margin-left: 6px;
+}
+
+.control.small {
+    height: 38px;
+    width: 38px;
+    background-color: #2a2a2a99;
+}

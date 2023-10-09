@@ -1,21 +1,15 @@
-.row {
-    padding-left: 4vw;
-    margin-right: 30px;
+.wrapper {
+    padding-top: 83px;
+    margin-inline: 30px;
     position: relative;
     z-index: 9;
 }
 
-.rowTitle {
-    padding-top: 40px;
-    margin-bottom: -5px;
-    font-size: 2.4rem;
-}
-
-.rowPoster {
+.poster {
     display: inline-flex;
-    gap: 0.5vw;
+    gap: 0.8vw;
     height: 221.75px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     margin-top: 20px;
     position: relative;
     width: -webkit-fit-content;

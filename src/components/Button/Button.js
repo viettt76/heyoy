@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './Button.module.scss';
 
-const Button = forwardRef(({ to, href, text, menu, closeSearch, outline, avatar, children, onClick }, ref) => {
+const Button = forwardRef(({ to, href, text, menu, outline, control, small, children, onClick }, ref) => {
     let Type = 'a';
     if (to) {
         Type = Link;
@@ -14,6 +14,8 @@ const Button = forwardRef(({ to, href, text, menu, closeSearch, outline, avatar,
         [styles.text]: text,
         [styles.menu]: menu,
         [styles.outline]: outline,
+        [styles.control]: control,
+        [styles.small]: small,
     });
 
     return (
@@ -29,8 +31,9 @@ Button.propTypes = {
     text: PropTypes.bool,
     menu: PropTypes.bool,
     outline: PropTypes.bool,
+    control: PropTypes.bool,
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func,
-}
+};
 
 export default Button;

@@ -1,16 +1,16 @@
-import request from "~/utils/httpRequest";
-import apis from "~/utils/apis";
+import axios from '~/utils/customizeAxios';
+import requests from '~/utils/requests';
 
 const romanceMovies = async () => {
     try {
-        const res = await request.get(apis.fetchRomanceMovies)
-        if(res && res.data && res.data.results.length > 0) {
-            const results = res.data.results
-            return results
+        const res = await axios.get(requests.fetchRomanceMovies);
+        if (res && res.results.length > 0) {
+            const results = res.results;
+            return results;
         }
     } catch (error) {
         console.log(error);
     }
-}
+};
 
-export default romanceMovies
+export default romanceMovies;

@@ -1,1 +1,1 @@
-export { default as PopperMenu } from './Popper'
+export { default } from './Popper';

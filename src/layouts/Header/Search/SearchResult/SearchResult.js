@@ -6,7 +6,7 @@ import { SearchIcon } from '~/components/Icons';
 function SearchResult({ data }) {
     return (
         <ul>
-            {data.map((item, id) => {
+            {data && data.slice(0, 10).map((item, id) => {
                 return (
                     <li className={clsx(styles.searchResult)} key={id}>
                         <SearchIcon className={styles.searchIcon} />
@@ -19,7 +19,7 @@ function SearchResult({ data }) {
 }
 
 SearchResult.propTypes = {
-    data: PropTypes.array.isRequired
+    data: PropTypes.array
 }
 
 export default SearchResult;

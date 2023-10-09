@@ -1,4 +1,4 @@
-import { forwardRef, useState, createContext, useContext, useEffect, useRef } from 'react';
+import { forwardRef, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,61 +11,66 @@ import styles from './Search.module.scss';
 import Button from '~/components/Button';
 import { ClearIcon, LoadIcon } from '~/components/Icons';
 import { SearchIcon as SearchIconInput } from '~/components/Icons';
-import SearchResult from './SearchResult';
+import { useNavigate } from 'react-router-dom';
 
 const SearchIcon = forwardRef(({ onClick }, ref) => {
-    const [showWrapperSearch, setShowWrapperSearch] = useContext(SearchContext);
-
-    const handleShowWrapperSearch = () => {
-        setShowWrapperSearch(!showWrapperSearch);
-    };
-
     return (
-        <div ref={ref} onClick={handleShowWrapperSearch}>
+        <div ref={ref} onClick={onClick}>
             <FontAwesomeIcon className={clsx(styles.searchIcon)} icon={faMagnifyingGlass} />
         </div>
     );
 });
 
-const SearchContext = createContext();
-
 function Search() {
-    const inputRef = useRef();
+    const navigate = useNavigate();
+
+    const inputRef = useRef(null);
+
     const [showWrapperSearch, setShowWrapperSearch] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const [searchResult, setSearchResult] = useState([]);
-    const [loading, setLoading] = useState(false);
+    // const [searchResult, setSearchResult] = useState([]);
+    // const [loading, setLoading] = useState(false);
 
-    const debounceValue = useDebounced(searchValue, 500).trim();
+    // const debounceValue = useDebounced(searchValue, 500).trim();
 
-    useEffect(() => {
-        setLoading(true);
-        const fetchApi = async () => {
-            try {
-                setLoading(true);
-                const result = await search({ debounceValue });
-                setSearchResult(result);
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-            }
-        };
+    // useEffect(() => {
+    //     setLoading(true);
+    //     const fetchApi = async () => {
+    //         try {
+    //             setLoading(true);
+    //             const res = await search(debounceValue);
+    //             if (res && res.results?.length > 0) {
+    //                 setSearchResult(res.results);
+    //             }
+    //             setLoading(false);
+    //         } catch (error) {
+    //             setLoading(false);
+    //         }
+    //     };
 
-        fetchApi();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [debounceValue]);
+    //     fetchApi();
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [debounceValue]);
 
     const handleClearInput = () => {
         setSearchValue('');
-
         inputRef.current.focus();
     };
 
+    const handleShowWrapperSearch = () => {
+        setShowWrapperSearch(!showWrapperSearch);
+    };
+
+    const handleSubmit = () => {
+        navigate(`/keyword/${searchValue}/page/1`);
+        setShowWrapperSearch(false);
+        setSearchValue('');
+    };
+
     return (
-        <SearchContext.Provider value={[showWrapperSearch, setShowWrapperSearch]}>
+        <div>
             {!showWrapperSearch ? (
-                <SearchIcon />
+                <SearchIcon onClick={handleShowWrapperSearch} />
             ) : (
                 <div>
                     <Tippy
@@ -76,19 +81,27 @@ function Search() {
                                 <div className={clsx(styles.wrapperInput)}>
                                     <SearchIconInput className={clsx(styles.searchIconInput)} />
                                     <input
+                                        autoFocus
                                         ref={inputRef}
                                         value={searchValue}
                                         spellCheck="false"
                                         className={clsx(styles.searchInput)}
                                         placeholder="Search for a movie, tv show, person..."
                                         onChange={(e) => setSearchValue(e.target.value)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                handleSubmit();
+                                            }
+                                        }}
                                     />
-                                    {searchValue && !loading && (
-                                        <ClearIcon className={clsx(styles.clearIcon)} onClick={handleClearInput} />
+                                    {searchValue && (
+                                        <Button onClick={handleClearInput}>
+                                            <ClearIcon className={clsx(styles.clearIcon)} />
+                                        </Button>
                                     )}
-                                    {searchValue && loading && <LoadIcon className={clsx(styles.loadIcon)} />}
+                                    {searchValue && <LoadIcon className={clsx(styles.loadIcon)} />}
                                 </div>
-                                <SearchResult data={searchResult} />
+                                {/* <SearchResult data={searchResult} /> */}
                             </div>
                         )}
                         onClickOutside={() => setShowWrapperSearch(false)}
@@ -103,12 +116,12 @@ function Search() {
                     </Tippy>
                 </div>
             )}
-        </SearchContext.Provider>
+        </div>
     );
 }
 
 SearchIcon.propTypes = {
     onClick: PropTypes.func,
-}
+};
 
 export default Search;
