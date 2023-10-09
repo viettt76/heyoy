@@ -69,7 +69,7 @@ function MoviePopup({ movieId }) {
                 }
             });
         }
-    }, [show]);
+    }, [movieId, show]);
 
     return (
         <>

@@ -1,5 +1,4 @@
 import { useState, createContext } from 'react';
-import clsx from 'clsx';
 import Button from '~/components/Button';
 import Popper from './Popper';
 

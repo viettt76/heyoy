@@ -7,7 +7,6 @@ import * as services from '~/services';
 import styles from './ListMovies.module.scss';
 
 function ListMovies({ keyword }) {
-    console.log(keyword);
     const { currentPage } = useParams();
 
     const navigate = useNavigate();

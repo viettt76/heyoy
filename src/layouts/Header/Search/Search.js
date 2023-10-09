@@ -1,12 +1,12 @@
-import { forwardRef, useState, useEffect, useRef } from 'react';
+import { forwardRef, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 
-import search from '~/services/searchService';
-import { useDebounced } from '~/hooks';
+// import search from '~/services/searchService';
+// import { useDebounced } from '~/hooks';
 import styles from './Search.module.scss';
 import Button from '~/components/Button';
 import { ClearIcon, LoadIcon } from '~/components/Icons';
