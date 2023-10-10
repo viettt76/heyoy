@@ -10,7 +10,7 @@ function App() {
             <Router>
                 <Routes>
                     {publicRoutes.map((route, index) => {
-                        let Layout =  MainLayout;
+                        let Layout = MainLayout;
                         if (route.layout) {
                             Layout = route.layout;
                         } else if (route.layout === null) {
