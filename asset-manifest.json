@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/heyoy/static/css/main.84f8ba5b.css",
-    "main.js": "/heyoy/static/js/main.b2b7d538.js",
-    "static/js/787.b0e5beda.chunk.js": "/heyoy/static/js/787.b0e5beda.chunk.js",
-    "static/media/NetflixSans_W_Rg.woff2": "/heyoy/static/media/NetflixSans_W_Rg.0f89544675950f86a3c9.woff2",
-    "index.html": "/heyoy/index.html",
-    "main.84f8ba5b.css.map": "/heyoy/static/css/main.84f8ba5b.css.map",
-    "main.b2b7d538.js.map": "/heyoy/static/js/main.b2b7d538.js.map",
-    "787.b0e5beda.chunk.js.map": "/heyoy/static/js/787.b0e5beda.chunk.js.map"
+    "main.css": "https://viettt76.github.io/heyoy/static/css/main.16822560.css",
+    "main.js": "https://viettt76.github.io/heyoy/static/js/main.d4052be9.js",
+    "static/js/787.b0e5beda.chunk.js": "https://viettt76.github.io/heyoy/static/js/787.b0e5beda.chunk.js",
+    "static/media/NetflixSans_W_Rg.woff2": "https://viettt76.github.io/heyoy/static/media/NetflixSans_W_Rg.0f89544675950f86a3c9.woff2",
+    "index.html": "https://viettt76.github.io/heyoy/index.html",
+    "main.16822560.css.map": "https://viettt76.github.io/heyoy/static/css/main.16822560.css.map",
+    "main.d4052be9.js.map": "https://viettt76.github.io/heyoy/static/js/main.d4052be9.js.map",
+    "787.b0e5beda.chunk.js.map": "https://viettt76.github.io/heyoy/static/js/787.b0e5beda.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.84f8ba5b.css",
-    "static/js/main.b2b7d538.js"
+    "static/css/main.16822560.css",
+    "static/js/main.d4052be9.js"
   ]
 }
