@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/heyoy/static/css/main.b40b88ed.css",
-    "main.js": "/heyoy/static/js/main.7c073c34.js",
+    "main.js": "/heyoy/static/js/main.89a90c9b.js",
     "static/js/787.b0e5beda.chunk.js": "/heyoy/static/js/787.b0e5beda.chunk.js",
     "static/media/avatar1.jpg": "/heyoy/static/media/avatar1.1b36eb38d0fca96a7a6c.jpg",
     "static/media/NetflixSans_W_Rg.woff2": "/heyoy/static/media/NetflixSans_W_Rg.0f89544675950f86a3c9.woff2",
     "index.html": "/heyoy/index.html",
     "main.b40b88ed.css.map": "/heyoy/static/css/main.b40b88ed.css.map",
-    "main.7c073c34.js.map": "/heyoy/static/js/main.7c073c34.js.map",
+    "main.89a90c9b.js.map": "/heyoy/static/js/main.89a90c9b.js.map",
     "787.b0e5beda.chunk.js.map": "/heyoy/static/js/787.b0e5beda.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b40b88ed.css",
-    "static/js/main.7c073c34.js"
+    "static/js/main.89a90c9b.js"
   ]
 }
