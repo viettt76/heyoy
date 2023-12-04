@@ -19,7 +19,7 @@ const Popper = ({ options, data, addMessage, placement = 'bottom', children }) =
 
     const _content = <div>{data.map((item, index) => {
         return <p 
-            key={index} 
+            key={`content-${index}`} 
             className={clsx(styles.contentItem, {
                 [styles.options]: options
             })}

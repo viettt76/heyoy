@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from '~/App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './components/GlobalStyle';
+import UserProvider from './Context/UserProvider';
 
 ReactDOM.render(
     <React.StrictMode>
-        <GlobalStyle>
-            <App />
-        </GlobalStyle>
+        <UserProvider>
+            <GlobalStyle>
+                <App />
+            </GlobalStyle>
+        </UserProvider>
     </React.StrictMode>,
-    document.getElementById('root')
+    document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

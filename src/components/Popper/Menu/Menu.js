@@ -14,7 +14,7 @@ const Menu = ({ placement = 'bottom', children, data }) => {
                 <div className={clsx(styles.wrapper)} tabIndex="-1" {...attrs}>
                     {data.map((item, index) => {
                         return (
-                            <div key={index} className={clsx(styles.item)}>
+                            <div key={`item-${index}`} className={clsx(styles.item)}>
                                 <Button menu to={item.to} href={item.href}>
                                     {item.title}
                                 </Button>

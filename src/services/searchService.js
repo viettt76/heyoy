@@ -1,7 +1,7 @@
 import axios from '~/utils/customizeAxios';
 import requests from '~/utils/requests';
 
-const search = async (query, page = '1') => {
+const searchService = async (query, page = '1') => {
     if (query) {
         const res = await axios.get(requests.fetchSearch, {
             params: {
@@ -28,4 +28,4 @@ const search = async (query, page = '1') => {
     }
 };
 
-export default search;
+export default searchService;

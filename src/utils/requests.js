@@ -14,6 +14,11 @@ const apis = {
     fetchRomanceMovies: `/discover/movie?api_key=${API_KEY}&with_genres=10749`,
     fetchDocumentaries: `/discover/movie?api_key=${API_KEY}&with_genres=99`,
 
+    fetchMoviePopular: `/movie/popular?api_key=${API_KEY}`,
+    fetchMovieNowPlaying: `/movie/now_playing?api_key=${API_KEY}`,
+    fetchMovieUpcoming: `/movie/upcoming?api_key=${API_KEY}`,
+    fetchMovieTopRated: `/movie/upcoming?api_key=${API_KEY}`,
+
     // fetchTVAction: `discover/tv?api_key=${API_KEY}&language=${language}&sort_by=popularity.desc&with_genres=10759`,
     // fetchTVComedy: `discover/tv?api_key=${API_KEY}&language=${language}&sort_by=popularity.desc&with_genres=35`,
     // fetchTVAnimation: `discover/tv?api_key=${API_KEY}&language=${language}&sort_by=popularity.desc&with_genres=16`,

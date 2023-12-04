@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faBell, faGear } from '@fortawesome/free-solid-svg-icons';
@@ -7,8 +7,9 @@ import clsx from 'clsx';
 import styles from './UserAction.module.scss';
 import MultiMenu from '~/components/MultiMenu';
 import Button from '~/components/Button';
-import avatar from '~/assets/images/avatar.jpeg';
+import avatar from '~/assets/images/avatar1.jpg';
 import Popper from '~/components/Popper';
+import { UserContext } from '~/Context/UserProvider';
 
 const userPopList = [
     {
@@ -42,6 +43,7 @@ const userPopList = [
         title: 'Đăng xuất',
         icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
         separate: true,
+        logout: true
     },
 ];
 
@@ -49,6 +51,8 @@ export const UserActionContext = createContext();
 
 function UserAction({ userCurrent }) {
     const [showUserPopList, setShowUserPopList] = useState(false);
+    const {setUserCurrent} = useContext(UserContext);
+    
 
     return (
         <UserActionContext.Provider value={[showUserPopList, setShowUserPopList]}>
@@ -79,7 +83,7 @@ function UserAction({ userCurrent }) {
                 ) : (
                     <div className={clsx(styles.authAction)}>
                         <div className={clsx(styles.auth)}>
-                            <Button text to={'/login'}>
+                            <Button text onClick={() => setUserCurrent(true)}>
                                 Đăng nhập
                             </Button>
                         </div>

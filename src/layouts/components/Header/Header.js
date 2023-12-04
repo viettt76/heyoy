@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Header.module.scss';
@@ -8,6 +9,7 @@ import AddMovie from './AddMovie';
 import Language from './Language';
 import Search from './Search';
 import UserAction from './UserAction';
+import { UserContext } from '~/Context/UserProvider';
 
 const menuLeft = [
     {
@@ -15,7 +17,7 @@ const menuLeft = [
         data: [
             {
                 title: 'Popular',
-                to: '/movie',
+                to: '/movie/popular',
             },
             {
                 title: 'Now Playing',
@@ -36,7 +38,7 @@ const menuLeft = [
         data: [
             {
                 title: 'Popular',
-                to: '/tv',
+                to: '/tv/popular',
             },
             {
                 title: 'Airing Today',
@@ -85,7 +87,8 @@ const menuLeft = [
 ];
 
 function Header() {
-    const userCurrent = true;
+    const {userCurrent} = useContext(UserContext);
+    
     return (
         <div className={clsx(styles.wrapper)}>
             <div className={clsx(styles.headerRight)}>
@@ -95,7 +98,7 @@ function Header() {
                 <ul className={clsx(styles.nav)}>
                     {menuLeft.map((item, index) => {
                         return (
-                            <li key={index} className={clsx(styles.navItem)}>
+                            <li key={`menu-item-${index}`} className={clsx(styles.navItem)}>
                                 <Menu placement="bottom-start" data={item.data}>
                                     <Button text>{item.title}</Button>
                                 </Menu>

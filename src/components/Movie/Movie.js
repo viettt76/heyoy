@@ -14,7 +14,7 @@ function Movie({ movieInfo, indexMovieInSlide, numberMoviesInSlide }) {
     const handleSwitchPath = (movieId) => {
         navigate(`/watch/id/${movieId}`);
     };
-
+    
     return (
         <div>
             <Tippy

@@ -8,7 +8,7 @@ function Popper({ className, content, children }) {
     const _content = <div className={clsx(styles.content)}>{content}</div>;
 
     return (
-        <Tippy className={className} interactive content={_content} placement="bottom">
+        <Tippy zIndex={999999} className={className} interactive content={_content} placement="bottom">
             {children}
         </Tippy>
     );

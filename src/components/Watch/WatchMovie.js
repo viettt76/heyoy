@@ -1,4 +1,6 @@
 import { useParams } from 'react-router-dom';
+import clsx from 'clsx';
+import styles from './WatchMovie.module.scss'
 
 function WatchMovie() {
     const { id } = useParams();
@@ -7,7 +9,7 @@ function WatchMovie() {
 
     return (
         <div>
-            <iframe title={`Movie-${id}`} allowFullScreen width={1000} height={530} src={videoUrl} />
+            <iframe className={clsx(styles['video'])} title={`Movie-${id}`} allowFullScreen src={videoUrl} />
         </div>
     );
 }

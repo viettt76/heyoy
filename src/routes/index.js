@@ -1,19 +1,22 @@
+import ListMoviesLayout from '~/layouts/ListMoviesLayout';
+import HeaderFooterLayout from '~/layouts/HeaderFooterLayout';
+
 import Home from '~/pages/Home';
-import Popular from '~/pages/Popular';
-import NowPlaying from '~/pages/NowPlaying';
-import New from '~/pages/New';
 import Watch from '~/pages/Watch';
 import Query from '~/pages/Query';
-import ListMoviesLayout from '~/layouts/ListMoviesLayout';
+import MoviesPopular from '~/pages/MoviesPopular';
+import Movies from '~/pages/Movies';
+
+import { paths } from '~/utils/constant';
 
 // Khi đăng nhập
 export const publicRoutes = [
-    { path: '/', component: Home },
-    { path: '/popular', component: Popular },
-    { path: '/now-playing', component: NowPlaying },
-    { path: '/movie/new', component: New, layout: null },
-    { path: '/watch/id/:id', component: Watch, layout: null },
-    { path: '/keyword/:keyword/page/:currentPage', component: Query, layout: ListMoviesLayout },
+    { path: paths.HOME, component: Home },
+    // { path: paths.MOVIES_POPULAR, component: MoviesPopular, layout: null },
+    { path: '/movie/*', component: Movies, layout: null },
+    // { path: '/movie/now-playing', component: MoviesNowPlaying },
+    { path: paths.WATCH_MOVIE, component: Watch, layout: HeaderFooterLayout },
+    { path: paths.QUERY, component: Query, layout: ListMoviesLayout },
 ];
 
 // Khi không đăng nhập

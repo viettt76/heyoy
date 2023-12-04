@@ -8,6 +8,7 @@ import styles from './ListMovies.module.scss';
 
 function ListMovies({ keyword }) {
     const { currentPage } = useParams();
+    console.log(keyword);
 
     const navigate = useNavigate();
 
@@ -41,7 +42,7 @@ function ListMovies({ keyword }) {
 
     const numberMoviesInSlide = 7;
 
-    const numberOfSlides = Math.ceil(listMovies.length / numberMoviesInSlide);
+    const numberOfSlides = Math.ceil(listMovies?.length / numberMoviesInSlide);
 
     const slides = [];
     for (let i = 0; i < numberOfSlides; i++) {
