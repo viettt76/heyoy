@@ -39,11 +39,18 @@
 .headerLeft {
     display: flex;
     align-items: center;
+
+    .user-actions {
+        display: flex;
+        align-items: center;
+    }
 }
 
 @media (max-width: 739px) {
     .headerLeft {
-        display: none;
+        .user-actions {
+            display: none;
+        }
     }
 
     .mobile-none {

@@ -138,11 +138,13 @@ function Header() {
             </div>
 
             <div className={clsx(styles.headerLeft)}>
-                <AddMovie userCurrent={userCurrent} />
+                <div className={clsx(styles['user-actions'])}>
+                    <AddMovie userCurrent={userCurrent} />
 
-                <Language />
+                    <Language />
 
-                <UserAction userCurrent={userCurrent} />
+                    <UserAction userCurrent={userCurrent} />
+                </div>
 
                 <Search />
             </div>
