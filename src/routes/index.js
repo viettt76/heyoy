@@ -4,17 +4,16 @@ import HeaderFooterLayout from '~/layouts/HeaderFooterLayout';
 import Home from '~/pages/Home';
 import Watch from '~/pages/Watch';
 import Query from '~/pages/Query';
-import MoviesPopular from '~/pages/MoviesPopular';
-import Movies from '~/pages/Movies';
+import MovieList from '~/pages/MovieList';
 
 import { paths } from '~/utils/constant';
+import MovieListByGenres from '~/pages/MovieListByGenres';
 
 // Khi đăng nhập
 export const publicRoutes = [
     { path: paths.HOME, component: Home },
-    // { path: paths.MOVIES_POPULAR, component: MoviesPopular, layout: null },
-    { path: '/movie/*', component: Movies, layout: null },
-    // { path: '/movie/now-playing', component: MoviesNowPlaying },
+    { path: paths.MOVIE_LISTS, component: MovieList, layout: null },
+    { path: paths.MOVIE_LIST_BY_GENRES, component: MovieListByGenres },
     { path: paths.WATCH_MOVIE, component: Watch, layout: HeaderFooterLayout },
     { path: paths.QUERY, component: Query, layout: ListMoviesLayout },
 ];

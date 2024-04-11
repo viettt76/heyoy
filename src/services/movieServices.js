@@ -1,9 +1,43 @@
 import axios from '~/utils/customizeAxios';
-import request from '~/utils/requests';
+import requests from '~/utils/requests';
+
+export const topRatedService = async () => {
+    try {
+        const res = await axios.get(requests.fetchTopRated);
+        if (res && res.results?.length > 0) {
+            const results = res.results;
+            return results;
+        }
+
+        return;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getGenresMovieList = async () => {
+    try {
+        const res = await axios.get(requests.getGenresMovieList);
+        if (res && res.genres?.length > 0) {
+            const results = res.genres;
+            return results;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getMovieByGenres = (genres, page = 1) => {
+    try {
+        return axios.get(`${requests.getMovieListByGenres}${genres}&page=${page}`);
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 export const moviesPopularService = async (page = '1', sort = '') => {
     try {
-        const res = await axios.get(request.fetchMoviePopular, {
+        const res = await axios.get(requests.fetchMoviePopular, {
             params: {
                 page,
             },
@@ -27,7 +61,7 @@ export const moviesPopularService = async (page = '1', sort = '') => {
 
 export const moviesNowPlayingService = async (page = '1') => {
     try {
-        const res = await axios.get(request.fetchMovieNowPlaying, {
+        const res = await axios.get(requests.fetchMovieNowPlaying, {
             params: {
                 page,
             },
@@ -40,7 +74,7 @@ export const moviesNowPlayingService = async (page = '1') => {
 
 export const moviesUpcomingService = async (page = '1') => {
     try {
-        const res = await axios.get(request.fetchMovieUpcoming, {
+        const res = await axios.get(requests.fetchMovieUpcoming, {
             params: {
                 page,
             },
@@ -53,7 +87,7 @@ export const moviesUpcomingService = async (page = '1') => {
 
 export const moviesTopRatedService = async (page = '1') => {
     try {
-        const res = await axios.get(request.fetchMovieTopRated, {
+        const res = await axios.get(requests.fetchMovieTopRated, {
             params: {
                 page,
             },

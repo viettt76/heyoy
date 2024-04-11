@@ -3,24 +3,30 @@
     margin-right: 30px;
     position: relative;
     z-index: 9;
-}
-
-.rowTitle {
     padding-top: 40px;
-    margin-bottom: -5px;
-    font-size: 2.4rem;
-}
 
-.rowPoster {
-    display: inline-flex;
-    gap: 0.5vw;
-    height: 221.75px;
-    margin-bottom: 50px;
-    margin-top: 20px;
-    position: relative;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
+    .rowTitle {
+        margin-bottom: -5px;
+        font-size: 2.4rem;
+        color: #fff;
+    }
+
+    .rowPoster {
+        display: inline-flex;
+        gap: 0.5vw;
+        height: 221.75px;
+        margin-bottom: 50px;
+        margin-top: 20px;
+        position: relative;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+
+    .btn-see-all {
+        height: 40px;
+        font-size: 20px;
+    }
 }
 
 @keyframes fadeOut {

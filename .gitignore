@@ -6,7 +6,6 @@
 .pnp.js
 
 # pretty formatting
-.vscode
 .prettierrc
 
 # testing

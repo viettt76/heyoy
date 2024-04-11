@@ -89,7 +89,7 @@ function MoviePopup({ movieId }) {
                         <h4 className={clsx(styles.posterTitle)}>{detailMovie.title}</h4>
                         <div className={clsx(styles.controls)}>
                             <div className={clsx(styles.controlsLeft)}>
-                                <Button control>
+                                <Button to={`/watch/id/${movieId}`} control>
                                     <PlayIcon width="33.6px" height="33.6px" />
                                 </Button>
                                 <Button control>

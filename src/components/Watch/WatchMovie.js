@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import clsx from 'clsx';
-import styles from './WatchMovie.module.scss'
+import styles from './WatchMovie.module.scss';
 
 function WatchMovie() {
     const { id } = useParams();
 
-    const videoUrl = `https://2embed.org/e.php?id=${id}`;
+    const videoUrl = `https://www.2embed.cc/embed/${id}`;
 
     return (
         <div>
