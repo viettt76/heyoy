@@ -7,13 +7,11 @@ import Query from '~/pages/Query';
 import MovieList from '~/pages/MovieList';
 
 import { paths } from '~/utils/constant';
-import MovieListByGenres from '~/pages/MovieListByGenres';
 
 // Khi đăng nhập
 export const publicRoutes = [
     { path: paths.HOME, component: Home },
     { path: paths.MOVIE_LISTS, component: MovieList, layout: null },
-    { path: paths.MOVIE_LIST_BY_GENRES, component: MovieListByGenres },
     { path: paths.WATCH_MOVIE, component: Watch, layout: HeaderFooterLayout },
     { path: paths.QUERY, component: Query, layout: ListMoviesLayout },
 ];

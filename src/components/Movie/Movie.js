@@ -14,7 +14,7 @@ function Movie({ movieInfo, indexMovieInSlide, numberMoviesInSlide }) {
     const handleSwitchPath = (movieId) => {
         navigate(`/watch/id/${movieId}`);
     };
-    
+
     return (
         <div>
             <Tippy
@@ -37,13 +37,9 @@ function Movie({ movieInfo, indexMovieInSlide, numberMoviesInSlide }) {
                 }}
             >
                 <Button onClick={() => handleSwitchPath(movieId)}>
-                    <div
-                        style={{
-                            backgroundImage: `url("https://image.tmdb.org/t/p/w500${movieInfo.poster_path}")`,
-                        }}
-                        className={clsx(styles.moviePoster)}
-                        onMouseEnter={() => setMovieId(movieInfo.id)}
-                    ></div>
+                    <div className={clsx(styles.moviePoster)} onMouseEnter={() => setMovieId(movieInfo.id)}>
+                        <img src={`https://image.tmdb.org/t/p/w500${movieInfo.poster_path}`} alt="" />
+                    </div>
                 </Button>
             </Tippy>
         </div>

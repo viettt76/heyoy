@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from '~/layouts/MainLayout';
 import { publicRoutes } from './routes';
 import ScrollTop from './components/ScrollTop';
@@ -7,7 +7,7 @@ import ScrollTop from './components/ScrollTop';
 function App() {
     return (
         <div className="App">
-            <BrowserRouter>
+            <HashRouter>
                 <ScrollTop>
                     <Routes>
                         {publicRoutes.map((route, index) => {
@@ -32,7 +32,7 @@ function App() {
                         })}
                     </Routes>
                 </ScrollTop>
-            </BrowserRouter>
+            </HashRouter>
         </div>
     );
 }

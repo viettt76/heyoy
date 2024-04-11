@@ -8,8 +8,6 @@ import styles from './ListMovies.module.scss';
 
 function ListMovies({ keyword }) {
     const { currentPage } = useParams();
-    console.log(keyword);
-
     const navigate = useNavigate();
 
     const [listMovies, setListMovies] = useState([]);
@@ -23,19 +21,27 @@ function ListMovies({ keyword }) {
 
     useEffect(() => {
         const fetchQuerySearch = async () => {
-            const res = await services.searchService(keyword, currentPage);
-            const results = res.results.filter((value) => {
-                return value.poster_path;
-            });
-            setListMovies(results);
+            try {
+                const res = await services.searchService(keyword, currentPage);
+                const results = res.results.filter((value) => {
+                    return value.poster_path;
+                });
+                setListMovies(results);
+            } catch (error) {
+                console.log(error);
+            }
         };
         fetchQuerySearch();
     }, [keyword, currentPage]);
 
     useEffect(() => {
         const fetchQuerySearch = async () => {
-            const res = await services.searchService(keyword);
-            setPageCount(res.total_pages);
+            try {
+                const res = await services.searchService(keyword);
+                setPageCount(res.total_pages);
+            } catch (error) {
+                console.log(error);
+            }
         };
         fetchQuerySearch();
     }, [keyword]);

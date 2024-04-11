@@ -9,11 +9,15 @@ function Home() {
 
     useEffect(() => {
         const fetchGenresMovieList = async () => {
-            let res = await getGenresMovieList();
-            if (res?.length > 0) {
-                setGenresMovieList(res);
-            } else {
-                setGenresMovieList([]);
+            try {
+                let res = await getGenresMovieList();
+                if (res?.genres?.length > 0) {
+                    setGenresMovieList(res?.genres);
+                } else {
+                    setGenresMovieList([]);
+                }
+            } catch (error) {
+                console.log(error);
             }
         };
         fetchGenresMovieList();

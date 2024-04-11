@@ -7,7 +7,7 @@ import styles from './Menu.module.scss';
 const Menu = ({ placement = 'bottom', children, data }) => {
     return (
         <Tippy
-            zIndex='999999'
+            zIndex="999999"
             interactive
             placement={placement}
             render={(attrs) => (
@@ -15,7 +15,7 @@ const Menu = ({ placement = 'bottom', children, data }) => {
                     {data.map((item, index) => {
                         return (
                             <div key={`item-${index}`} className={clsx(styles.item)}>
-                                <Button menu to={item.to} href={item.href}>
+                                <Button menu to={item.to} params={item?.params} href={item.href}>
                                     {item.title}
                                 </Button>
                             </div>
@@ -33,6 +33,6 @@ Menu.propTypes = {
     placement: PropTypes.string,
     children: PropTypes.node.isRequired,
     data: PropTypes.array.isRequired,
-}
+};
 
 export default Menu;

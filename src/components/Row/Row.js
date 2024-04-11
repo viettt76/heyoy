@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Carousel from 'react-bootstrap/Carousel';
+import { useMediaQuery } from 'react-responsive';
 import clsx from 'clsx';
 import styles from './Row.module.scss';
 import * as services from '~/services';
@@ -9,16 +10,32 @@ import Movie from '~/components/Movie';
 
 function Row({ title, id }) {
     const [listMovies, setListMovies] = useState([]);
+    const [numberMoviesInSlide, setNumberMoviesInSlide] = useState(7);
+
+    const isMobile = useMediaQuery({ maxWidth: 739 });
+    const isTablet = useMediaQuery({ minWidth: 740, maxWidth: 1023 });
+
+    useEffect(() => {
+        if (isMobile) {
+            setNumberMoviesInSlide(3);
+        } else if (isTablet) {
+            setNumberMoviesInSlide(5);
+        } else {
+            setNumberMoviesInSlide(7);
+        }
+    }, [isMobile, isTablet]);
 
     useEffect(() => {
         const fetchMovieByGenres = async () => {
-            const res = await services.getMovieByGenres(id);
-            setListMovies(res?.results);
+            try {
+                const res = await services.getMovieByGenres(id);
+                setListMovies(res?.results);
+            } catch (error) {
+                console.log(error);
+            }
         };
         fetchMovieByGenres();
     }, [id]);
-
-    const numberMoviesInSlide = 7;
 
     const numberOfSlides = Math.ceil(listMovies?.length / numberMoviesInSlide);
 

@@ -1,28 +1,31 @@
 .wrapper {
-    display: flex;
-    margin-top: 90px;
     color: #fff;
+    position: relative;
+    margin-top: 90px;
+
+    .title {
+        margin-top: 20px;
+        font-size: 23px;
+        text-align: center;
+    }
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 400px;
-    padding: 0 30px 0 40px;
-
-    h3 {
-        font-size: 2.4rem;
-        margin-bottom: 20px;
-    }
+    position: absolute;
+    right: 96px;
+    top: 0;
+    width: auto;
+    z-index: 9999;
 
     .selects {
+        min-width: 154px;
         width: 100%;
     }
 }
 
 .listMovies {
-    margin-top: -7px;
+    margin-top: 30px;
+    margin-left: 50px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -31,12 +34,21 @@
     margin: 7px 13px;
 }
 
-.loadAdd {
-    width: 100%;
-    margin: 8px 0;
-    text-align: center;
+@media (max-width: 739px) {
+    .wrapper {
+        .title {
+            margin-left: 30px;
+            text-align: start;
+        }
+    }
 
-    .loadAddBtn {
-        font-size: 2rem;
+    .sidebar {
+        right: 30px;
+    }
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .sidebar {
+        right: 60px;
     }
 }

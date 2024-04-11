@@ -17,19 +17,31 @@ const menuLeft = [
         data: [
             {
                 title: 'Popular',
-                to: '/movie/popular',
+                to: '/movie/popular/page/1',
+                params: {
+                    title: 'Popular Movies',
+                },
             },
             {
                 title: 'Now Playing',
-                to: '/movie/now-playing',
+                to: '/movie/now-playing/page/1',
+                params: {
+                    title: 'Now Playing Movies',
+                },
             },
             {
                 title: 'Upcoming',
-                to: '/movie/upcoming',
+                to: '/movie/upcoming/page/1',
+                params: {
+                    title: 'Upcoming Movies',
+                },
             },
             {
                 title: 'Top Rated',
-                to: '/movie/top-rated',
+                to: '/movie/top-rated/page/1',
+                params: {
+                    title: 'Top Rated Movies',
+                },
             },
         ],
     },
@@ -38,19 +50,31 @@ const menuLeft = [
         data: [
             {
                 title: 'Popular',
-                to: '/tv/popular',
+                to: '/tv/popular/page/1',
+                params: {
+                    title: 'Popular',
+                },
             },
             {
                 title: 'Airing Today',
-                to: '/tv/airing-today',
+                to: '/tv/airing-today/page/1',
+                params: {
+                    title: 'Airing Today TV Shows',
+                },
             },
             {
                 title: 'On TV',
-                to: '/tv/on-the-air',
+                to: '/tv/on-the-air/page/1',
+                params: {
+                    title: 'On TV TV Shows',
+                },
             },
             {
                 title: 'Top Rated',
-                to: '/tv/top-rated',
+                to: '/tv/top-rated/page/1',
+                params: {
+                    title: 'Top Rated TV Shows',
+                },
             },
         ],
     },
@@ -62,6 +86,7 @@ const menuLeft = [
                 to: '/person',
             },
         ],
+        mobileNone: true,
     },
     {
         title: 'More',
@@ -83,22 +108,26 @@ const menuLeft = [
                 href: 'https://developer.themoviedb.org/docs',
             },
         ],
+        mobileNone: true,
     },
 ];
 
 function Header() {
-    const {userCurrent} = useContext(UserContext);
-    
+    const { userCurrent } = useContext(UserContext);
+
     return (
         <div className={clsx(styles.wrapper)}>
             <div className={clsx(styles.headerRight)}>
-                <Link to={'/'}>
+                <Link to="/">
                     <img className={clsx(styles.logo)} src={logo} alt="Heyoy" />
                 </Link>
                 <ul className={clsx(styles.nav)}>
                     {menuLeft.map((item, index) => {
                         return (
-                            <li key={`menu-item-${index}`} className={clsx(styles.navItem)}>
+                            <li
+                                key={`menu-item-${index}`}
+                                className={clsx(styles.navItem, { [styles['mobile-none']]: item?.mobileNone })}
+                            >
                                 <Menu placement="bottom-start" data={item.data}>
                                     <Button text>{item.title}</Button>
                                 </Menu>
