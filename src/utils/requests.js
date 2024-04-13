@@ -1,16 +1,19 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
 // const language = 'vi-VN';
-const language = 'en-US';
+// const language = 'en-US';
 
 const apis = {
     getGenresMovieList: `/genre/movie/list?api_key=${API_KEY}`,
     getMovieListByGenres: `/discover/movie?api_key=${API_KEY}&with_genres=`,
 
-    fetchTrending: `/trending/movie/day?api_key=${API_KEY}&language=${language}`,
-    fetchSearch: `/search/movie?api_key=${API_KEY}&language=${language}`,
+    fetchTrending: `/trending/movie/day?api_key=${API_KEY}`,
+    // fetchSearchMovie: `/search/movie?api_key=${API_KEY}`,
+
+    // search movies, TV shows and people
+    fetchSearchMulti: `/search/multi?api_key=${API_KEY}`,
 
     // fetchNetflixOriginals: `/discover/tv?api_key=${API_KEY}&with_network=213`,
-    fetchTopRated: `/movie/top_rated?api_key=${API_KEY}&language=${language}`,
+    fetchTopRated: `/movie/top_rated?api_key=${API_KEY}`,
 
     fetchMoviePopular: `/movie/popular?api_key=${API_KEY}`,
     fetchMovieNowPlaying: `/movie/now_playing?api_key=${API_KEY}`,

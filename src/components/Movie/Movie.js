@@ -31,7 +31,7 @@ function Movie({ movieInfo, indexMovieInSlide, numberMoviesInSlide }) {
                             tabIndex={-1}
                             {...attrs}
                         >
-                            <MoviePopup movieId={movieId} />
+                            <MoviePopup movieId={movieId} movieType={movieInfo?.media_type} />
                         </div>
                     );
                 }}

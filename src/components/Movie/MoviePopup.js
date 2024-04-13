@@ -7,7 +7,7 @@ import { AddIcon, ArrowDownIcon, CloseIcon, DislikeIcon, LikeIcon, PlayIcon } fr
 import Button from '~/components/Button';
 import styles from './Movie.module.scss';
 
-function MoviePopup({ movieId }) {
+function MoviePopup({ movieId, movieType = 'movie' }) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -29,47 +29,68 @@ function MoviePopup({ movieId }) {
     useEffect(() => {
         if (movieId) {
             axios
-                .get(`movie/${movieId}?api_key=1b133fbcf72e164485c108b94fbdac4b&append_to_response=videos,images`)
+                .get(
+                    `${movieType.toLowerCase()}/${movieId}?api_key=${
+                        process.env.REACT_APP_API_KEY
+                    }&append_to_response=videos,images`,
+                )
                 .then((res) => {
                     if (res?.videos?.results) {
                         const trailer = res.videos.results.find((link) => {
                             return link.type === 'Trailer';
                         });
 
-                        const genresName = res.genres.map((genre) => genre.name);
+                        const genresName = res?.genres?.map((genre) => genre?.name);
 
-                        const oldDate = res.release_date.split('-');
-                        const newDate = `${oldDate[2]}-${oldDate[1]}-${oldDate[0]}`;
-                        if (trailer?.key) {
+                        let oldDate = res?.release_date?.split('-');
+                        let newDate;
+
+                        if (movieType.toLowerCase() === 'tv') {
+                            oldDate = res?.first_air_date?.split('-');
+                        }
+                        if (oldDate?.length > 0) {
+                            newDate = `${oldDate[2]}-${oldDate[1]}-${oldDate[0]}`;
+                        }
+                        if (trailer?.key && newDate) {
                             setDetailMovie({
-                                trailerLink: trailer.key,
-                                title: res.title,
-                                voted: res.vote_average,
-                                runtime: res.runtime,
+                                trailerLink: trailer?.key,
+                                title: movieType.toLowerCase() === 'tv' ? res?.name : res?.title,
+                                voted: res?.vote_average,
+                                runtime: movieType.toLowerCase() === 'tv' ? res?.number_of_episodes : res?.runtime,
                                 genres: genresName,
                                 releaseDate: newDate,
-                                overview: res.overview,
-                                backdrop: res.backdrop_path,
+                                overview: res?.overview,
+                                backdrop: res?.backdrop_path,
                             });
+                        } else {
+                            setDetailMovie({});
                         }
                     }
+                })
+                .catch((error) => {
+                    console.log(error);
                 });
         }
-    }, [movieId]);
+    }, [movieId, movieType]);
 
     useEffect(() => {
         if (show) {
-            axios.get(`movie/${movieId}/credits?api_key=1b133fbcf72e164485c108b94fbdac4b`).then((res) => {
-                if (res) {
-                    const actors = res.cast.filter((actor) => {
-                        return actor.known_for_department === 'Acting' && [0, 1, 2].includes(actor.order);
-                    });
+            axios
+                .get(`${movieType}/${movieId}/credits?api_key=${process.env.REACT_APP_API_KEY}`)
+                .then((res) => {
+                    if (res) {
+                        const actors = res.cast.filter((actor) => {
+                            return actor.known_for_department === 'Acting' && [0, 1, 2].includes(actor.order);
+                        });
 
-                    setActors(actors.map((actor) => actor.name));
-                }
-            });
+                        setActors(actors.map((actor) => actor.name));
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
-    }, [movieId, show]);
+    }, [movieId, show, movieType]);
 
     return (
         <>

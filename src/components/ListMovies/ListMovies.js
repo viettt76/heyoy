@@ -23,10 +23,14 @@ function ListMovies({ keyword }) {
         const fetchQuerySearch = async () => {
             try {
                 const res = await services.searchService(keyword, currentPage);
-                const results = res.results.filter((value) => {
-                    return value.poster_path;
-                });
-                setListMovies(results);
+                if (res?.results?.length > 0) {
+                    const results = res?.results?.filter((value) => {
+                        return value?.poster_path;
+                    });
+                    setListMovies(results);
+                } else {
+                    setListMovies([]);
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -38,7 +42,7 @@ function ListMovies({ keyword }) {
         const fetchQuerySearch = async () => {
             try {
                 const res = await services.searchService(keyword);
-                setPageCount(res.total_pages);
+                setPageCount(res?.total_pages);
             } catch (error) {
                 console.log(error);
             }
