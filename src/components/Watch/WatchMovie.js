@@ -5,7 +5,7 @@ import styles from './WatchMovie.module.scss';
 function WatchMovie() {
     const { id } = useParams();
 
-    const videoUrl = `https://www.2embed.cc/embed/${id}`;
+    const videoUrl = `https://www.2embed.stream/embed/movie/${id}`;
 
     return (
         <div>
