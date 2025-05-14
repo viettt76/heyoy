@@ -7,7 +7,7 @@ import SocketProvider from '@/app/components/SocketProvider';
 import ConversationBubbles from '@/app/components/ConversationBubbles';
 import { usePathname, useRouter } from '@/i18n/routing';
 import MovieHeader from '@/app/components/MovieHeader';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SetupInterceptors } from '@/lib/services/api';
 
 export default function DefaultLayout({
@@ -20,7 +20,7 @@ export default function DefaultLayout({
 
     const [loading, setLoading] = useState(true);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const token = localStorage.getItem('token');
 
         if (!token) {

@@ -31,7 +31,6 @@ export const SetupInterceptors = (router) => {
                 error.response?.data?.code === 'ACCOUNT_LOCKED'
             ) {
                 router.push(`/login`);
-                localStorage.removeItem('token');
                 toast.error(error.response?.data.message, {
                     duration: 2500,
                 });
