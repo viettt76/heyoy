@@ -8,7 +8,6 @@ import ConversationBubbles from '@/app/components/ConversationBubbles';
 import { usePathname, useRouter } from '@/i18n/routing';
 import MovieHeader from '@/app/components/MovieHeader';
 import { useEffect, useState } from 'react';
-import { SetupInterceptors } from '@/lib/services/api';
 
 export default function DefaultLayout({
     children,
@@ -25,16 +24,15 @@ export default function DefaultLayout({
 
         if (!token) {
             router.push('/login');
+        } else {
+            setLoading(false);
         }
-
-        setLoading(false);
     }, [router]);
 
     if (loading) return null;
 
     return (
         <AppProvider>
-            <NavigateFunctionComponent />
             <SocketProvider>
                 <ConversationBubbles />
                 <ScrollToTop />
@@ -45,15 +43,4 @@ export default function DefaultLayout({
             </SocketProvider>
         </AppProvider>
     );
-}
-
-function NavigateFunctionComponent() {
-    const router = useRouter();
-    const [ran, setRan] = useState(false);
-
-    if (!ran) {
-        SetupInterceptors(router);
-        setRan(true);
-    }
-    return <></>;
 }

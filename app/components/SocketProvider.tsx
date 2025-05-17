@@ -6,10 +6,13 @@ import { createContext, ReactNode, useContext, useEffect } from 'react';
 import CallProvider from './CallProvider';
 import { addNotification, NotificationType } from '@/lib/slices/notificationSlice';
 import { addFriendRequestCount } from '@/lib/slices/userSlice';
+import { useRouter } from '@/i18n/routing';
+import { toast } from 'sonner';
 
 const SocketContext = createContext(socket);
 
 export default function SocketProvider({ children }: { children: ReactNode }) {
+    const router = useRouter();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -35,10 +38,20 @@ export default function SocketProvider({ children }: { children: ReactNode }) {
             );
         };
 
+        const handleAccountLocked = (message) => {
+            router.push(`/login`);
+            toast.error(message, {
+                duration: 2500,
+            });
+        };
+
         socket.on('newFriendRequest', handleNewFriendRequest);
+
+        socket.on('accountLocked', handleAccountLocked);
 
         return () => {
             socket.off('newFriendRequest', handleNewFriendRequest);
+            socket.off('accountLocked', handleAccountLocked);
             socket.disconnect();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
