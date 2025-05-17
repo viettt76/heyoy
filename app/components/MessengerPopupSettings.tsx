@@ -160,7 +160,7 @@ export default function MessengerPopupSettings({
                     <>
                         <DrilldownMenuItem submenu="group-members">Thành viên nhóm</DrilldownMenuItem>
                         {isAdmin && <DrilldownMenuItem submenu="add-members">Thêm thành viên</DrilldownMenuItem>}
-                        <DrilldownMenuItem onClick={() => setShowDialogOutGroup(true)}>Rời nhóm</DrilldownMenuItem>
+                        <DrilldownMenuItem onClick={handleOutGroup}>Rời nhóm</DrilldownMenuItem>
                     </>
                 )}
             </DrilldownMenuContent>
@@ -249,7 +249,7 @@ export default function MessengerPopupSettings({
                 </DrilldownMenuContent>
             )}
 
-            <Dialog open={showDialogOutGroup} onOpenChange={setShowDialogOutGroup}>
+            {/* <Dialog open={showDialogOutGroup} onOpenChange={setShowDialogOutGroup}>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>Bạn có chắc chắn muốn rời nhóm không</DialogTitle>
@@ -260,7 +260,7 @@ export default function MessengerPopupSettings({
                         </Button>
                     </DialogFooter>
                 </DialogContent>
-            </Dialog>
+            </Dialog> */}
         </DrilldownMenuProvider>
     );
 }
