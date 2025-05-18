@@ -22,7 +22,6 @@ import { BadgeCheck } from 'lucide-react';
 import {
     AlertDialog,
     AlertDialogContent,
-    AlertDialogDescription,
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
@@ -130,10 +129,6 @@ export default function HeaderRight({ isDarkMode }: { isDarkMode?: boolean }) {
                 <AlertDialogContent className="sm:max-w-[425px]">
                     <AlertDialogHeader>
                         <AlertDialogTitle>Bạn có chắc muốn đăng xuất</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete your account and remove your data
-                            from our servers.
-                        </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                         <Button variant="ghost" onClick={() => setShowConfirmLogout(false)}>
