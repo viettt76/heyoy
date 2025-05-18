@@ -14,12 +14,20 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { resetInfo, Role, selectUserInfo } from '@/lib/slices/userSlice';
-import { logoutService } from '@/lib/services/authService';
 import { useState } from 'react';
 import RecentConversations from './RecentConversations';
 import SystemNotification from './SystemNotification';
 import { toast } from 'sonner';
 import { BadgeCheck } from 'lucide-react';
+import {
+    AlertDialog,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 
 export default function HeaderRight({ isDarkMode }: { isDarkMode?: boolean }) {
     const { theme, setTheme } = useTheme();
@@ -108,7 +116,7 @@ export default function HeaderRight({ isDarkMode }: { isDarkMode?: boolean }) {
                             </Link>
                         </DropdownMenuItem>
                     )}
-                    <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
+                    <DropdownMenuItem className="cursor-pointer" onClick={() => setShowConfirmLogout(true)}>
                         <div className="flex items-center">
                             <div className="w-6">
                                 <SignOut className="w-5 h-5" />
@@ -118,21 +126,25 @@ export default function HeaderRight({ isDarkMode }: { isDarkMode?: boolean }) {
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
-            {/* <Dialog open={showConfirmLogout} onOpenChange={setShowConfirmLogout}>
-                <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                        <DialogTitle>Bạn có chắc muốn đăng xuất</DialogTitle>
-                    </DialogHeader>
-                    <DialogFooter>
+            <AlertDialog open={showConfirmLogout} onOpenChange={setShowConfirmLogout}>
+                <AlertDialogContent className="sm:max-w-[425px]">
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Bạn có chắc muốn đăng xuất</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            This action cannot be undone. This will permanently delete your account and remove your data
+                            from our servers.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
                         <Button variant="ghost" onClick={() => setShowConfirmLogout(false)}>
                             Huỷ
                         </Button>
                         <Button variant="destructive" onClick={handleLogout}>
                             Đăng xuất
                         </Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog> */}
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
             {/* <button
                 onClick={toggleTheme}
                 className="relative w-12 h-6 bg-muted rounded-full transition-all duration-300 flex items-center justify-between px-1"
