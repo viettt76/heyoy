@@ -13,14 +13,8 @@ import { selectFriends } from '@/lib/slices/relationshipSlice';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DrilldownMenuContent, DrilldownMenuItem, DrilldownMenuProvider, DrilldownMenuTrigger } from './DrilldownMenu';
 import { Link } from '@/i18n/routing';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import {
-    AlertDialog,
-    AlertDialogContent,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
 
 type GroupMemberType = UserInfoType & {
     role: ConversationRole;
@@ -166,7 +160,7 @@ export default function MessengerPopupSettings({
                     <>
                         <DrilldownMenuItem submenu="group-members">Thành viên nhóm</DrilldownMenuItem>
                         {isAdmin && <DrilldownMenuItem submenu="add-members">Thêm thành viên</DrilldownMenuItem>}
-                        <DrilldownMenuItem onClick={handleOutGroup}>Rời nhóm</DrilldownMenuItem>
+                        <DrilldownMenuItem onClick={() => setShowDialogOutGroup(true)}>Rời nhóm</DrilldownMenuItem>
                     </>
                 )}
             </DrilldownMenuContent>
@@ -255,18 +249,18 @@ export default function MessengerPopupSettings({
                 </DrilldownMenuContent>
             )}
 
-            <AlertDialog open={showDialogOutGroup} onOpenChange={setShowDialogOutGroup}>
-                <AlertDialogContent className="sm:max-w-[425px]">
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>Bạn có chắc chắn muốn rời nhóm không</AlertDialogTitle>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
+            <Dialog open={showDialogOutGroup} onOpenChange={setShowDialogOutGroup}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Bạn có chắc chắn muốn rời nhóm không</DialogTitle>
+                    </DialogHeader>
+                    <DialogFooter>
                         <Button variant="destructive" onClick={handleOutGroup}>
                             Rời nhóm
                         </Button>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </DrilldownMenuProvider>
     );
 }

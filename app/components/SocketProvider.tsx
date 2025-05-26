@@ -19,6 +19,7 @@ export default function SocketProvider({ children }: { children: ReactNode }) {
         socket.connect();
 
         const handleNewFriendRequest = (newFriendRequest) => {
+            console.log(newFriendRequest);
             const { friendRequestId, userId, firstName, lastName, avatar, notificationId, content, createdAt } =
                 newFriendRequest;
             dispatch(addFriendRequestCount());

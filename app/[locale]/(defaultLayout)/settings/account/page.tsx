@@ -25,7 +25,9 @@ export default function AccountSettings() {
     });
 
     const [isNotMatchNewPassword, setIsNotMatchNewPassword] = useState(false);
+    const [isPasswordNotLong, setIsPasswordNotLong] = useState(false);
     const [isOldPasswordIncorrect, setIsOldPasswordIncorrect] = useState(false);
+    const [isPasswordNotChange, setIsPasswordNotChange] = useState(false);
 
     const [passwordToDeleteAccount, setPasswordToDeleteAccount] = useState('');
     const [passwordToDeleteAccountIncorrect, setPasswordToDeleteAccountIncorrect] = useState(false);
@@ -39,6 +41,8 @@ export default function AccountSettings() {
 
         if (name === 'newPassword' || name === 'confirmNewPassword') {
             setIsNotMatchNewPassword(false);
+            setIsPasswordNotChange(false);
+            setIsPasswordNotLong(false);
         }
 
         setChangePasswordFormData((prev) => ({
@@ -53,6 +57,16 @@ export default function AccountSettings() {
             return;
         }
 
+        if (changePasswordFormData.newPassword.length < 8) {
+            setIsPasswordNotLong(true);
+            return;
+        }
+
+        if (changePasswordFormData.newPassword === changePasswordFormData.oldPassword) {
+            setIsPasswordNotChange(true);
+            return;
+        }
+
         try {
             await changePasswordService({
                 oldPassword: changePasswordFormData.oldPassword,
@@ -60,7 +74,7 @@ export default function AccountSettings() {
             });
             dispatch(resetInfo());
             toast.success('Cập nhật mật khẩu thành công');
-
+            localStorage.removeItem('token');
             router.push('/login');
         } catch (error) {
             console.error(error);
@@ -73,6 +87,7 @@ export default function AccountSettings() {
             await deleteAccountService(passwordToDeleteAccount);
             dispatch(resetInfo());
             toast.info('Tài khoản của bạn đã bị xoá');
+            localStorage.removeItem('token');
             router.push('/login');
         } catch (error) {
             console.log(error);
@@ -101,6 +116,13 @@ export default function AccountSettings() {
                         <Label className="text-base">Mật khẩu mới</Label>
                         <Input type="password" name="newPassword" onChange={handleChangeForm} />
 
+                        {isPasswordNotLong && (
+                            <>
+                                <div className="w-1 h-1"></div>
+                                <div className="text-destructive -mt-3 text-xs">Mật khẩu mới phải ít nhất 8 ký tự</div>
+                            </>
+                        )}
+
                         <Label className="text-base">Nhập lại mật khẩu mới</Label>
                         <Input type="password" name="confirmNewPassword" onChange={handleChangeForm} />
 
@@ -108,6 +130,14 @@ export default function AccountSettings() {
                             <>
                                 <div className="w-1 h-1"></div>
                                 <div className="text-destructive -mt-3 text-xs">Mật khẩu nhập lại chưa khớp</div>
+                            </>
+                        )}
+                        {isPasswordNotChange && (
+                            <>
+                                <div className="w-1 h-1"></div>
+                                <div className="text-destructive -mt-3 text-xs">
+                                    Cập nhật mật khẩu thất bại. Không có thay đổi.
+                                </div>
                             </>
                         )}
                     </div>
