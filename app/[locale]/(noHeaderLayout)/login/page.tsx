@@ -47,7 +47,8 @@ export default function Login() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            await loginService(values);
+            const { data } = await loginService(values);
+            localStorage.setItem('token', JSON.stringify(data.token));
             router.push('/');
         } catch (error) {
             form.setError('password', {
