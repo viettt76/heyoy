@@ -175,7 +175,7 @@ export default function ConversationBubbles() {
     };
 
     return (
-        <div className="fixed top-32 right-2 z-[15]">
+        <div className="fixed top-32 right-2 z-[60]">
             <motion.div
                 drag
                 dragMomentum={false}
