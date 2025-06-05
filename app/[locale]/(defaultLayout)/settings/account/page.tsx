@@ -90,7 +90,7 @@ export default function AccountSettings() {
             localStorage.removeItem('token');
             router.push('/login');
         } catch (error) {
-            console.log(error);
+            console.error(error);
             if (error instanceof AxiosError && (error.status === 400 || error.status === 422)) {
                 setPasswordToDeleteAccountIncorrect(true);
             }
