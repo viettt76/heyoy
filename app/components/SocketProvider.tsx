@@ -39,6 +39,7 @@ export default function SocketProvider({ children }: { children: ReactNode }) {
         };
 
         const handleAccountLocked = (message) => {
+            localStorage.removeItem('token');
             router.push(`/login`);
             toast.error(message, {
                 duration: 2500,
